@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Error 404 Not found{% endblock title %}
+
+{% block content %}
+<h1>Error, 404 Not Found. Looks like the destination you were trying to reach does not exist.</h1>
+<a href={{ url_for('index') }}>Home</a>
+
+{% endblock content %}
