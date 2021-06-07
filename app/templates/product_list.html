@@ -16,23 +16,30 @@
     {% endif %}
     {% endwith %}
 </div>
-<div class="row">
+<div class="table-wrap">
+<table class="table table-striped product-list">
+    <thead thead-light>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Detail</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for product in product_list %}
-    <div class="card" style="width: 18rem; margin: 0.5%">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-            Price: {{ "${:,.2f}".format(product.price) }}
-        </h6>
-        <p class="card-text">Quantity: {{ product.quantity }}</p>
-        <a href={{ url_for( "get_product_detail", pid=product.id) }} class="card-link">View Detail</a>
-        <a href={{ url_for( "update_product_form", pid=product.id) }} class="card-link">Update</a>
-        <a href="#" class="card-link">Delete</a>
-    </div>
-    {% set i = i+1 %} {% if i%4 == 0 %}
+    <tr>
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.name }}</td>
+        <td>{{ "${:,.2f}".format(product.price) }}</td>
+        <td>{{ product.quantity }}</td>
+        <td><a href={{ url_for( "get_product_detail", pid=product.id) }}>View Detail</a></td>
+        <td><a href={{ url_for( "update_product_form", pid=product.id) }}>Update</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
 </div>
-<div class="row">
-    {% endif %} {% endfor %}
-
-</div>
-
 {% endblock content %}

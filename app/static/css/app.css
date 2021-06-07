@@ -1,0 +1,8 @@
+div.table-wrap{
+    padding: 2rem;
+}
+
+td a{
+    text-decoration: none;
+    color:inherit;
+}

@@ -21,8 +21,16 @@ def create_product(name, price, quantity):
 
 
 if __name__ == "__main__":
-    create_product("bananas",23.23,12)
-    create_product("oranges",12.23,50)
-    create_product("Mangos", 42.42, 42)
+    create_product("Papayas",12.99,159)
+    create_product("Tangerines",5.99,99)
+    create_product("Mangos", 3.5, 42)
+    create_product("Nectarines", 3.5, 42)
+    create_product("Bananas",2.99,1539)
+    create_product("Oranges",4.99,99)
+    create_product("Pears", 4.2, 420)
+    create_product("Strawberries", 5.5, 42)
+    
+
+
     products = Product.query.all()
     print(products)
