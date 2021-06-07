@@ -8,6 +8,7 @@ from wtforms import(
     FloatField,
     IntegerField,
     TextField,
+    RadioField,
     validators
 )
 
@@ -19,3 +20,4 @@ class ProductForm(Form):
     price = FloatField("Price", [validators.required()], render_kw=style)
     quantity = IntegerField("Quantity", [validators.required()], render_kw=style)
     description = TextField("Description", [validators.required()], render_kw=style)
+    instock = RadioField('In Stock', choices=[(1,'in stock'),(0,'Out of stock')])

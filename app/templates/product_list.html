@@ -24,6 +24,7 @@
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
+            <th scope="col">In Stock</th>
             <th scope="col">Detail</th>
             <th scope="col">Update</th>
         </tr>
@@ -35,6 +36,7 @@
         <td>{{ product.name }}</td>
         <td>{{ "${:,.2f}".format(product.price) }}</td>
         <td>{{ product.quantity }}</td>
+        <td>{{ product.instock }}</td>
         <td><a href={{ url_for( "get_product_detail", pid=product.id) }}>View Detail</a></td>
         <td><a href={{ url_for( "update_product_form", pid=product.id) }}>Update</a></td>
     </tr>

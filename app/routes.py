@@ -50,6 +50,7 @@ def update_product(pid):
         product.price = form.price.data
         product.quantity = form.quantity.data
         product.description = form.description.data
+        product.instock = form.instock.data
         db.session.commit()
         flash("Product updated!")
         return redirect(url_for('get_products'))
@@ -83,6 +84,7 @@ def create_product():
         product.price = form.price.data
         product.quantity = form.quantity.data
         product.description = form.description.data
+        product.instock = form.instock.data
         db.session.add(product)
         db.session.commit()
         flash("Product created!")

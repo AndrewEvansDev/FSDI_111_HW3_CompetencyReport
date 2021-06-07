@@ -10,7 +10,7 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=True)
-    instock = db.Column(db.Boolean, nullable=True, default=True)
+    instock = db.Column(db.Integer, nullable=True, default=1)
 
     def __repr__(self):
         return "<Product %r>" % self.name
