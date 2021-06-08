@@ -11,8 +11,8 @@ from flask import (
 from werkzeug.utils import redirect
 from app import app, db
 from datetime import datetime
-from app.database import Product
-from app.forms import ProductForm
+from app.database import Product, Review
+from app.forms import ProductForm, ReviewForm
 
 
 @app.route("/")
@@ -43,7 +43,7 @@ def products_outofstock():
 
 @app.route("/products/<int:pid>")
 def get_product_detail(pid):
-    """retrieve and display a single product"""    
+    """retrieve and display a single product"""  
     product = Product.query.filter_by(id=pid).first()
     return render_template("product_detail.html", product=product)
 
@@ -98,6 +98,34 @@ def create_product():
         return redirect(url_for('get_products'))
     flash("Invalid data")
     return redirect(url_for('get_products'))
+
+
+@app.route("/reviews")
+def display_reviews():
+    """retrieve and display all product reviews"""
+    reviews = Review.query.all()
+    return render_template("reviews.html", reviews_list=reviews)
+
+@app.route("/reviews", methods=["POST"])
+def create_review():
+    """Create product review"""
+    form = ReviewForm(request.form)
+    if form.validate():
+        review = Review()
+        review.reviewtext = form.reviewtext.data
+        review.product_name = form.product_name.data
+        db.session.add(review)
+        db.session.commit()
+        flash("Review added")
+        return redirect(url_for('display_reviews'))
+    flash("Invalid data")
+    return redirect(url_for('display_reviews'))
+
+@app.route("/reviews/registrations")
+def create_review_form():
+    """Renders the create product form"""
+    Review_form = ReviewForm()
+    return render_template("review_form.html", form=Review_form)
 
 @app.errorhandler(404)
 def page_not_found(e):

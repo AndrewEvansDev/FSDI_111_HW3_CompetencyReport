@@ -11,7 +11,7 @@ from wtforms import(
     RadioField,
     validators
 )
-
+from app.database import Product
 
 class ProductForm(Form):
     style = {'style': "width:100%"}
@@ -21,3 +21,9 @@ class ProductForm(Form):
     quantity = IntegerField("Quantity", [validators.required()], render_kw=style)
     description = TextField("Description", [validators.required()], render_kw=style)
     instock = RadioField('In Stock', choices=[(1,'in stock'),(0,'Out of stock')])
+
+class ReviewForm(Form):
+    choices = Product.query.all()
+    style = {'style': "width:100%"}
+    product_name = StringField("Product Name", render_kw=style)
+    reviewtext = TextField("Review Text", render_kw=style)
