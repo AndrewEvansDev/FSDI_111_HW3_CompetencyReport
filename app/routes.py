@@ -34,6 +34,13 @@ def get_products():
     return render_template("product_list.html", product_list=products)
 
 
+@app.route("/outofstock") #new
+def products_outofstock():
+    """retrieve and display all out of stock products"""
+    products = Product.query.all()
+    return render_template("products_outofstock.html", product_list=products)
+
+
 @app.route("/products/<int:pid>")
 def get_product_detail(pid):
     """retrieve and display a single product"""    
